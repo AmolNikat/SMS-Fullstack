@@ -1,20 +1,21 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
-import { DateFilterComponent } from './shared/date-filter/date-filter.component';
-import { DataGridComponent } from './data-grid/data-grid.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { MaterialModule } from './material.module';
+import { DataGridModule } from './data-grid/data-grid.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    DateFilterComponent,
-    DataGridComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MaterialModule,
+    DataGridModule
   ],
   providers: [],
   bootstrap: [AppComponent]
