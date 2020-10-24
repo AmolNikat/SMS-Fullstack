@@ -1,5 +1,7 @@
 <div class="data-grid-container">
-  <app-date-filter></app-date-filter>
+  <app-date-filter
+  (dateFilterData) = "onDateFilterDataChange($event)"
+  ></app-date-filter>
   <div class="spinner-container" *ngIf="dataSource.loading$ | async">
     <mat-spinner class ="mat-progress-spinner"></mat-spinner>
   </div>

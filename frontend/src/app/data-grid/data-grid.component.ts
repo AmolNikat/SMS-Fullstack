@@ -1,8 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { merge } from 'rxjs';
-// import { tap } from 'rxjs/operators';
 import { City } from '../model/city';
 import { CityDataService } from '../services/city-data.service';
 import { CitiesDataSource } from './cities.DataSource';
@@ -11,6 +10,7 @@ import { CitiesDataSource } from './cities.DataSource';
   selector: 'app-data-grid',
   templateUrl: './data-grid.component.html',
   styleUrls: ['./data-grid.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DataGridComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -24,6 +24,10 @@ export class DataGridComponent implements OnInit {
     'color',
   ];
   public dataSource: CitiesDataSource;
+  public originalDateFilterData = {
+    startDate: null,
+    endDate: null
+  }
 
   constructor(private cityDataService: CityDataService) {}
 
@@ -31,6 +35,7 @@ export class DataGridComponent implements OnInit {
     this.dataSource = new CitiesDataSource(this.cityDataService);
     this.dataSource.loadCities(1);
   }
+
   ngAfterViewInit(): void {
     this.paginator.page.subscribe(() => {
       console.log('page changes', this.paginator);
@@ -55,6 +60,14 @@ export class DataGridComponent implements OnInit {
       this.paginator.pageSize
     );
   }
+
+  public onDateFilterDataChange(dateFilterData: any) {
+    if(this.originalDateFilterData.startDate !== dateFilterData.startDate && this.originalDateFilterData.endDate !== dateFilterData.endDate) {
+      this.originalDateFilterData = {...dateFilterData};
+      console.log(dateFilterData);
+    }
+  }
+
   onRowClicked(row: City) {
     console.log('Row clicked: ', row);
   }

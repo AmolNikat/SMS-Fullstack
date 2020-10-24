@@ -1,1 +1,42 @@
-<p>date-filter works!</p>
+<div class="date-filter-container">
+  <form class="space-between" [formGroup]="dateForm">
+    <mat-form-field appearance="fill">
+      <mat-label>Start Date</mat-label>
+      <input
+        matInput
+        formControlName="startDate"
+        [matDatepicker]="startDatePicker"
+      />
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="startDatePicker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #startDatePicker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>End Date</mat-label>
+      <input
+        matInput
+        formControlName="endDate"
+        [matDatepicker]="endDatePicker"
+      />
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="endDatePicker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #endDatePicker></mat-datepicker>
+    </mat-form-field>
+
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      class="apply-button"
+      [disabled]="dateForm.invalid"
+      (click)="applyDateFilter()"
+    >
+      Apply
+    </button>
+  </form>
+</div>

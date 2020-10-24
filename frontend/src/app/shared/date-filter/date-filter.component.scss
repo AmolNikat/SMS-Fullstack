@@ -1,0 +1,12 @@
+.date-filter-container {
+  margin-top: 15px;
+  .space-between {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+  }
+  .apply-button {
+    margin-bottom: 10px;
+  }
+}

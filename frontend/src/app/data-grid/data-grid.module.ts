@@ -4,6 +4,7 @@ import { DateFilterComponent } from '../shared/date-filter/date-filter.component
 import { DataGridComponent } from './data-grid.component';
 import { MaterialModule } from '../material.module';
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -15,7 +16,8 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     CommonModule,
     HttpClientModule,
-    MaterialModule
+    ReactiveFormsModule,
+    MaterialModule,
   ],
   exports: [
     DataGridComponent
