@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DataGridService } from './data-grid.service';
+import { CityDataService } from './city-data.service';
 
-describe('DataGridService', () => {
-  let service: DataGridService;
+describe('CityDataService', () => {
+  let service: CityDataService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(DataGridService);
+    service = TestBed.inject(CityDataService);
   });
 
   it('should be created', () => {

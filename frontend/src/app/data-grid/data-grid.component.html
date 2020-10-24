@@ -1,2 +1,58 @@
-<app-date-filter></app-date-filter>
-<p>data-grid works!</p>
+<div class="data-grid-container">
+  <app-date-filter></app-date-filter>
+  <div class="spinner-container" *ngIf="dataSource.loading$ | async">
+    <mat-spinner class ="mat-progress-spinner"></mat-spinner>
+  </div>
+
+  <mat-table class="lessons-table mat-elevation-z8" [dataSource]="dataSource"
+  matSort>
+    <ng-container matColumnDef="city">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>city</mat-header-cell>
+      <mat-cell *matCellDef="let city">{{ city.city }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="start_date">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>start date</mat-header-cell>
+      <mat-cell class="end_date-cell" *matCellDef="let city">{{
+        city.start_date
+      }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="end_date">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>end date</mat-header-cell>
+      <mat-cell class="end_date-cell" *matCellDef="let city">{{
+        city.end_date
+      }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="price">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>price</mat-header-cell>
+      <mat-cell class="price-cell" *matCellDef="let city">{{
+        city.price
+      }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>status</mat-header-cell>
+      <mat-cell class="status-cell" *matCellDef="let city">{{
+        city.status
+      }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="color">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>color</mat-header-cell>
+      <mat-cell class="color-cell" *matCellDef="let city">{{
+        city.color
+      }}</mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+    <mat-row
+      *matRowDef="let row; columns: displayedColumns"
+      (click)="onRowClicked(row)"
+    ></mat-row>
+  </mat-table>
+  <mat-paginator [length]="50" [pageSize]="3"
+                   [pageSizeOptions]="[3, 5, 10]"></mat-paginator>
+</div>
