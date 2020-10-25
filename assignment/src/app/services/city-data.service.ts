@@ -14,19 +14,16 @@ private readonly baseUrl = environment.baseUrl;
   constructor(private http:HttpClient) { }
 
  public findCities(
-    start_date: string, end_date : string, sortOrder = 'asc',
-    pageNumber = 0, pageSize = 3):  Observable<any> {
+  start_date: string, end_Date: string, sortColumn: string,
+  sortDirection: string, pageNumber: string, pageSize: string):  Observable<any> {
 
-    return this.http.get(`${this.baseUrl}api/cities`);
-    // , {
-        // params: new HttpParams()
-        //     .set('courseId', `${courseId}`)
-        //     .set('filter', filter)
-        //     .set('sortOrder', sortOrder)
-        //     .set('pageNumber', pageNumber.toString())
-        //     .set('pageSize', pageSize.toString())
-    // }).pipe(
-    //     map(res =>  res["payload"])
-    // );
+    return this.http.get(`${this.baseUrl}api/cities`
+    , {
+        params: new HttpParams()
+            .set('pageNumber', `${pageNumber}`)
+            .set('pageSize', `${pageSize}`)
+            .set('sortColumn', sortColumn)
+            .set('sortDirection', sortDirection)
+    });
 }
 }

@@ -34,11 +34,17 @@ export class DataGridComponent implements OnInit {
     endDate: null,
   };
 
+  public pageSizeOptions = [5, 10, 25, 100];
+  public pageCount = 100;
+
   constructor(private cityDataService: CityDataService) {}
 
   ngOnInit(): void {
     this.dataSource = new CitiesDataSource(this.cityDataService);
-    this.dataSource.loadCities(1);
+    this.dataSource.loadCities('1');
+    this.dataSource.citiesCount$.subscribe((count: number) => {
+      this.pageCount = count;
+    })
   }
 
   ngAfterViewInit(): void {
@@ -46,7 +52,8 @@ export class DataGridComponent implements OnInit {
       this.loadCitiesPage();
     });
     setTimeout(() => {
-      this.sort.sortChange.subscribe(() => {
+      this.sort.sortChange.subscribe((value) => {
+        console.log(value);
         this.paginator.pageIndex = 0;
       });
     }, 500);
@@ -57,11 +64,12 @@ export class DataGridComponent implements OnInit {
 
   private loadCitiesPage() {
     this.dataSource.loadCities(
-      1,
-      '',
-      'this.sort.direction',
-      this.paginator.pageIndex,
-      this.paginator.pageSize
+      null,
+      null,
+      this.sort.active,
+      this.sort.direction,
+      `${this.paginator.pageIndex + 1}`,
+      `${this.paginator.pageSize}`
     );
   }
 
