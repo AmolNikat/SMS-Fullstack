@@ -15,12 +15,10 @@ router.get("/", async (req, res) => {
     (pageNumber = parseInt(queryParams.pageNumber) || 1),
     (pageSize = parseInt(queryParams.pageSize) || 5);
 
-  let column = "city";
   const cities = [];
   const totalCount = await getDb().collection(collection).find({}).count();
 
   if (start_date && end_date) {
-    console.log("inside date filter");
     getDb()
       .collection(collection)
       .find(
@@ -44,9 +42,11 @@ router.get("/", async (req, res) => {
       })
       .then((docs) => {
         res.status(200).json({ payload: cities, totalCount });
+      }).catch(err => {
+        console.log(err);
+        res.status(500).json({msg: 'something went wrong, please try again'})
       });
-  }
-
+  } else {
   getDb()
     .collection(collection)
     .find({})
@@ -60,7 +60,11 @@ router.get("/", async (req, res) => {
     })
     .then((docs) => {
       res.status(200).json({ payload: cities, totalCount });
+    }).catch(err => {
+      console.log(err);
+      res.status(500).json({msg: 'something went wrong, please try again'})
     });
+  }
 });
 
 module.exports = router;
