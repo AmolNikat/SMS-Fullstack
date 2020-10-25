@@ -10,6 +10,7 @@ import { merge } from 'rxjs';
 import { City } from '../model/city';
 import { CityDataService } from '../services/city-data.service';
 import { CitiesDataSource } from './cities.DataSource';
+import { formatDate } from '../utils/date-utils';
 
 @Component({
   selector: 'app-data-grid',
@@ -79,7 +80,8 @@ export class DataGridComponent implements OnInit {
       this.originalDateFilterData.endDate !== dateFilterData.endDate
     ) {
       this.originalDateFilterData = { ...dateFilterData };
-      this.dataSource.loadCities(dateFilterData.startDate, dateFilterData.endDate, '', '','', '');
+
+      this.dataSource.loadCities(formatDate(dateFilterData.startDate),formatDate(dateFilterData.endDate), '', '','1', '5');
     }
   }
 }

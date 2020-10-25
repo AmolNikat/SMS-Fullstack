@@ -24,6 +24,8 @@ private readonly baseUrl = environment.baseUrl;
             .set('pageSize', `${pageSize}`)
             .set('sortColumn', sortColumn)
             .set('sortDirection', sortDirection)
+            .set('start_date', start_date)
+            .set('end_Date', end_Date)
     });
 }
 }

@@ -21,7 +21,7 @@
       <mat-header-cell *matHeaderCellDef mat-sort-header
         >Start Date</mat-header-cell
       >
-      <mat-cell class="end_date-cell" *matCellDef="let city">{{
+      <mat-cell  *matCellDef="let city">{{
         city.start_date
       }}</mat-cell>
     </ng-container>
@@ -30,14 +30,14 @@
       <mat-header-cell *matHeaderCellDef mat-sort-header
         >End Date</mat-header-cell
       >
-      <mat-cell class="end_date-cell" *matCellDef="let city">{{
+      <mat-cell  *matCellDef="let city">{{
         city.end_date
       }}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="price">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Price</mat-header-cell>
-      <mat-cell class="price-cell" *matCellDef="let city">{{
+      <mat-cell  *matCellDef="let city">{{
         city.price
       }}</mat-cell>
     </ng-container>
@@ -46,14 +46,14 @@
       <mat-header-cell *matHeaderCellDef mat-sort-header
         >Status</mat-header-cell
       >
-      <mat-cell class="status-cell" *matCellDef="let city">{{
+      <mat-cell  *matCellDef="let city">{{
         city.status
       }}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="color">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Color</mat-header-cell>
-      <mat-cell class="color-cell" *matCellDef="let city">{{
+      <mat-cell [style.background-color]="city.color" *matCellDef="let city">{{
         city.color
       }}</mat-cell>
     </ng-container>
@@ -62,7 +62,6 @@
 
     <mat-row
       *matRowDef="let row; columns: displayedColumns"
-      (click)="onRowClicked(row)"
     ></mat-row>
   </mat-table>
   <mat-paginator
