@@ -11,9 +11,14 @@ refer `https://www.mongodb.com/try/download/community` and set environment varia
 refer `https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/`
 
 
+4. clone the repo at `https://github.com/AmolNikat/SMS-Fullstack`
+
+    go inside assignment folder where package.json exits follow below steps
+
 ## ======== steps to run the project ===========
-1. Run `npm start` to build frontend solution.  Navigate to `http://localhost:4200/`. 
+1. run command `npm install`
 2. Run `npm run start:server` to buid backend solution on other terminal
+3. Run `npm start` to build frontend solution.  Navigate to `http://localhost:4200/`. 
 
 
 
