@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { merge } from 'rxjs';
@@ -10,11 +15,11 @@ import { CitiesDataSource } from './cities.DataSource';
   selector: 'app-data-grid',
   templateUrl: './data-grid.component.html',
   styleUrls: ['./data-grid.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DataGridComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort, {static: true }) sort: MatSort;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
   public displayedColumns: string[] = [
     'city',
     'start_date',
@@ -26,8 +31,8 @@ export class DataGridComponent implements OnInit {
   public dataSource: CitiesDataSource;
   public originalDateFilterData = {
     startDate: null,
-    endDate: null
-  }
+    endDate: null,
+  };
 
   constructor(private cityDataService: CityDataService) {}
 
@@ -38,17 +43,16 @@ export class DataGridComponent implements OnInit {
 
   ngAfterViewInit(): void {
     this.paginator.page.subscribe(() => {
-      console.log('page changes', this.paginator);
       this.loadCitiesPage();
     });
-    // setTimeout(() => {
-      this.sort.sortChange.subscribe(() =>  {
+    setTimeout(() => {
+      this.sort.sortChange.subscribe(() => {
         this.paginator.pageIndex = 0;
       });
-    // },);
+    }, 500);
     merge(this.sort.sortChange, this.paginator.page).subscribe(() => {
       this.loadCitiesPage();
-    })
+    });
   }
 
   private loadCitiesPage() {
@@ -62,13 +66,16 @@ export class DataGridComponent implements OnInit {
   }
 
   public onDateFilterDataChange(dateFilterData: any) {
-    if(this.originalDateFilterData.startDate !== dateFilterData.startDate && this.originalDateFilterData.endDate !== dateFilterData.endDate) {
-      this.originalDateFilterData = {...dateFilterData};
+    if (
+      this.originalDateFilterData.startDate !== dateFilterData.startDate ||
+      this.originalDateFilterData.endDate !== dateFilterData.endDate
+    ) {
+      this.originalDateFilterData = { ...dateFilterData };
       console.log(dateFilterData);
     }
   }
 
   onRowClicked(row: City) {
-    console.log('Row clicked: ', row);
+    // handle row click here
   }
 }
