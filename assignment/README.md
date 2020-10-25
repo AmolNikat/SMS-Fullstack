@@ -10,6 +10,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 refer `https://www.mongodb.com/try/download/community` and set environment variable required for running mongod
 refer `https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/`
 
+if mongod service is not started by default, then run command `net start mongodb`, make sure you have run cmd as admin.
+
 
 4. clone the repo at `https://github.com/AmolNikat/SMS-Fullstack`
 
