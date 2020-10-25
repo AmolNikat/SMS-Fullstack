@@ -79,11 +79,7 @@ export class DataGridComponent implements OnInit {
       this.originalDateFilterData.endDate !== dateFilterData.endDate
     ) {
       this.originalDateFilterData = { ...dateFilterData };
-      console.log(dateFilterData);
+      this.dataSource.loadCities(dateFilterData.startDate, dateFilterData.endDate, '', '','', '');
     }
-  }
-
-  onRowClicked(row: City) {
-    // handle row click here
   }
 }

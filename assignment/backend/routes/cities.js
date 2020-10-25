@@ -15,9 +15,8 @@ router.get("/", async (req, res) => {
   pageNumber = parseInt(queryParams.pageNumber) || 1,
   pageSize = parseInt(queryParams.pageSize) || 5;
 
-  console.log(sortColumn, '\n', sortDirection);
 
-  const cities = [];
+const cities = [];
  const totalCount = await getDb()
   .collection(collection)
   .find({}).count();
@@ -58,5 +57,5 @@ router.get("/", async (req, res) => {
 //       res.status(200).json({payload: cities, totalCount});
 //     });
 // });
-
+  // });
 module.exports = router;
